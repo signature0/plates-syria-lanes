@@ -250,6 +250,58 @@
     );
   };
 
+  /* ---------- marketplace listing card ---------- */
+  C.listingCardHTML = function (l, opts) {
+    opts = opts || {};
+    var SP = window.SP;
+    var t = SP.t;
+    var gov = SP.govName(l.gov);
+    var patKey = C.patternKey(l.number);
+    var modeCls = { fixed: "mode-fixed", auction: "mode-auction", offer: "mode-offer" }[l.mode];
+
+    var priceHTML = "";
+    if (l.mode === "fixed") {
+      priceHTML = '<div class="listing-price">' + SP.fmtSYP(l.price) + "</div>";
+    } else if (l.mode === "auction") {
+      priceHTML = '<div class="listing-price">' + SP.fmtSYP(l.price) + "</div>" +
+        '<div class="listing-end">' + t("mkt.inc") + ": " + SP.fmtSYP(l.increment) + "</div>" +
+        '<div class="listing-end">' + t("mkt.ends") + ' <span class="countdown" data-countdown="' + l.endsAt + '">"' +
+        SP.fmtCountdown(l.endsAt - Date.now(), t("card.ended")) + "</span></div>";
+    } else {
+      priceHTML = '<div class="listing-price" style="font-size:var(--fs-md)">' + t("mode.offer") + "</div>";
+    }
+
+    var soldChip = opts.sold ? ' <span class="badge badge-gray">' + t("mkt.sold") + "</span>" : "";
+    var pendingChip = opts.pending ? ' <span class="chip chip-warn">' + t("mkt.offer.pending") + "</span>" : "";
+
+    var actions = "";
+    if (opts.actions && !opts.sold) {
+      if (l.mode === "fixed") actions = '<button class="btn btn-primary btn-sm" type="button" data-buy="' + l.id + '">' + t("mkt.buy") + "</button>";
+      if (l.mode === "offer") {
+        actions = '<button class="btn btn-outline btn-sm" type="button" data-offer="' + l.id + '">' + t("mkt.offer") + "</button>" +
+          '<div class="offer-form" data-offerform="' + l.id + '" style="display:none">' +
+          '<div class="field"><label>' + t("mkt.offer.amount") + '</label><input class="input" inputmode="numeric" autocomplete="off"></div>' +
+          '<div class="field"><label>' + t("mkt.offer.msg") + '</label><textarea class="input" rows="2" data-i18n-ph="mkt.offer.msg.ph"></textarea></div>' +
+          '<button class="btn btn-gold btn-sm" type="button" data-offersubmit="' + l.id + '">' + t("common.send") + "</button>" +
+          "</div>";
+      }
+    }
+
+    return (
+      '<div class="card listing-card" data-list="' + l.id + '">' +
+      '<div class="ac-plate">' + C.plateSVG(l) + "</div>" +
+      '<div class="ac-body">' +
+      '<div class="ac-gov">' + gov + "</div>" +
+      '<div class="ac-num">' + SP.numDigits(l.number) + "</div>" +
+      '<div class="ac-meta"><span class="mode-badge ' + modeCls + '">' + t("mode." + l.mode) + "</span>" +
+      '<span class="chip">' + t("pat." + patKey) + "</span>" + pendingChip + soldChip + "</div>" +
+      priceHTML +
+      '<div class="ac-bid"><span class="lbl">' + t("mkt.form.seller") + '</span><span class="val">' + (l.seller || "—") + "</span></div>" +
+      '<div class="ac-meta" style="margin-top:var(--sp-2)">' + actions + "</div>" +
+      "</div></div>"
+    );
+  };
+
   /* ---------- gov name helpers ---------- */
   C.govById = function (id) {
     var g = window.PLATE_DATA.GOVS.filter(function (x) { return x.id === id; })[0];

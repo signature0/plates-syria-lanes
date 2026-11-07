@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>السوق — وزارة النقل</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body data-page="marketplace">
+<div id="hdr"></div>
+
+<main class="container page">
+  <div class="page-head">
+    <span class="eyebrow" data-i18n="nav.marketplace">السوق</span>
+    <h1 data-i18n="mkt.title">سوق اللوحات</h1>
+    <p class="lead" data-i18n="mkt.sub">لوحات يروّجها مالكوها مباشرة — بثلاث طرق عرض</p>
+  </div>
+
+  <!-- List a plate -->
+  <div class="card card-pad" id="list-panel">
+    <h2 data-i18n="mkt.list">اعرض لوحتك</h2>
+    <form id="publish-form" novalidate>
+      <div class="form-row">
+        <div class="field">
+          <label for="l-gov" data-i18n="mkt.form.gov">المحافظة</label>
+          <select class="input" id="l-gov"></select>
+        </div>
+        <div class="field">
+          <label for="l-num" data-i18n="mkt.form.number">رقم اللوحة (5 أرقام)</label>
+          <input class="input" id="l-num" inputmode="numeric" maxlength="5" autocomplete="off">
+        </div>
+      </div>
+      <div class="field">
+        <span data-i18n="mkt.form.mode">طريقة العرض</span>
+        <div class="radio-cards">
+          <label class="radio-card"><input type="radio" name="l-mode" value="fixed" checked>
+            <span class="rc-box"><strong data-i18n="mode.fixed">سعر ثابت</strong><small>—</small></span></label>
+          <label class="radio-card"><input type="radio" name="l-mode" value="auction">
+            <span class="rc-box"><strong data-i18n="mode.auction">مزاد</strong><small>—</small></span></label>
+          <label class="radio-card"><input type="radio" name="l-mode" value="offer">
+            <span class="rc-box"><strong data-i18n="mode.offer">مفتوح للتفاوض</strong><small>—</small></span></label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field" data-mode="fixed auction">
+          <label for="l-price" data-i18n="mkt.form.price">السعر المطلوب (ل.س)</label>
+          <input class="input" id="l-price" inputmode="numeric" autocomplete="off">
+        </div>
+        <div class="field" id="f-end" data-mode="auction" style="display:none">
+          <label for="l-end" data-i18n="mkt.form.end">تاريخ انتهاء المزاد</label>
+          <input class="input" id="l-end" type="date">
+        </div>
+        <div class="field" id="f-inc" data-mode="auction" style="display:none">
+          <label for="l-increment" data-i18n="mkt.form.increment">الحد الأدنى للزيادة (ل.س)</label>
+          <input class="input" id="l-increment" inputmode="numeric" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="l-seller" data-i18n="mkt.form.seller">اسم المالك</label>
+          <input class="input" id="l-seller" autocomplete="off">
+        </div>
+      </div>
+      <div class="reg-err" id="mkt-err" style="display:none;color:var(--c-maroon);font-weight:700;font-size:var(--fs-sm)"></div>
+      <button class="btn btn-primary" id="btn-publish" type="submit" data-i18n="mkt.form.submit">نشر الإعلان</button>
+    </form>
+  </div>
+
+  <!-- Filters -->
+  <div class="section">
+    <div class="chip-row" id="mkt-pats">
+      <button class="filter-chip" type="button" data-pat="all" aria-pressed="true" data-i18n="common.all">الكل</button>
+      <button class="filter-chip" type="button" data-pat="same5" aria-pressed="false" data-i18n="pat.same5">خمس أرقام متطابقة</button>
+      <button class="filter-chip" type="button" data-pat="repeat" aria-pressed="false" data-i18n="pat.repeat">تكرار</button>
+      <button class="filter-chip" type="button" data-pat="palindrome" aria-pressed="false" data-i18n="pat.palindrome">متناظر</button>
+      <button class="filter-chip" type="button" data-pat="sequence" aria-pressed="false" data-i18n="pat.sequence">تتالي</button>
+      <button class="filter-chip" type="button" data-pat="triple" aria-pressed="false" data-i18n="pat.triple">ثلاثي</button>
+      <button class="filter-chip" type="button" data-pat="lucky7" aria-pressed="false" data-i18n="pat.lucky7">سبعة محظوظ</button>
+    </div>
+    <div class="field" style="max-width:320px">
+      <label for="m-gov" data-i18n="mkt.form.gov">المحافظة</label>
+      <select class="input" id="m-gov"></select>
+    </div>
+    <p class="filter-count" id="m-count" aria-live="polite" style="margin-top:var(--sp-3)"></p>
+    <div class="grid grid-3" id="mkt-grid" aria-live="polite"></div>
+    <div class="empty" id="mkt-empty" style="display:none" data-i18n="common.empty">لا توجد نتائج مطابقة.</div>
+  </div>
+
+  <!-- Your listings -->
+  <section class="section">
+    <h2 data-i18n="mkt.your">إعلاناتك</h2>
+    <div id="my-listings"></div>
+  </section>
+</main>
+
+<div id="ftr"></div>
+<div id="toast-root"></div>
+
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pages/marketplace.js"></script>
+</body>
+</html>

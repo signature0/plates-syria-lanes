@@ -179,6 +179,9 @@
       "mkt.ends": "ينتهي",
       "mkt.inc": "الزيادة",
       "mkt.pattern": "نوع النمط",
+      "mkt.err": "يرجى تعبئة الحقول المطلوبة بشكل صحيح (رقم من 5 خانات، سعر، وتاريخ مستقبلي للمزادات).",
+      "mkt.offer.invalid": "أدخل مبلغ عرض صحيحاً.",
+      "mkt.offer.msg.ph": "رسالة اختيارية للبائع…",
 
       "tools.title": "الأدوات",
       "tools.sub": "أدوات تقدير سريعة — نتائج تقريبية لأغراض الاستئناس فقط",
@@ -464,6 +467,9 @@
       "mkt.ends": "Ends",
       "mkt.inc": "Increment",
       "mkt.pattern": "Pattern class",
+      "mkt.err": "Please fill the required fields correctly (5-digit number, price, future end date for auctions).",
+      "mkt.offer.invalid": "Enter a valid offer amount.",
+      "mkt.offer.msg.ph": "Optional message to the seller…",
 
       "tools.title": "Tools",
       "tools.sub": "Quick estimation tools — approximate results for reference only",

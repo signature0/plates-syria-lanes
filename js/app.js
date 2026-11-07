@@ -25,6 +25,7 @@
   }
 
   var SP = {
+    ls: { get: lsGet, set: lsSet },
     state: {
       lang: lsGet("sp.lang", "ar"),
       nums: lsGet("sp.nums", "ar") /* 'ar' = ١٢٣ , 'en' = 123 */
