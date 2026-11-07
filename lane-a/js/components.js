@@ -79,10 +79,14 @@
     );
   };
 
-  C.govLabel = function (x, y, gov, fill, maxW) {
-    maxW = maxW || 100;
-    var len = gov.length;
-    var fs = len <= 4 ? 21 : Math.max(12, Math.round(21 * 4 / len));
+  function textWidthPx(str, fs) {
+    // Arabic Cairo ~0.52em avg advance; spaces narrower
+    return String(str).length * fs * 0.56;
+  }
+  C.govLabel = function (x, y, gov, fill) {
+    var avail = x - 348; /* divider at 340 + pad */
+    var fs = Math.min(21, Math.floor(avail / (String(gov).length * 0.56)));
+    fs = Math.max(11, fs);
     return '<text x="' + x + '" y="' + y + '" text-anchor="end" direction="rtl" font-family="Cairo, sans-serif" font-size="' + fs + '" font-weight="800" fill="' + fill + '">' + gov + "</text>";
   };
 
