@@ -1,0 +1,83 @@
+/* ============================================================
+   Lane A — "Official" design tokens
+   Source: CARD.md design brief (faithful to mot.gov.sy)
+   ============================================================ */
+:root {
+  /* Brand colors */
+  --c-primary: #1a4a3a;        /* deep green */
+  --c-primary-dark: #0f2e24;   /* darkest green (text on light, hero bg) */
+  --c-primary-soft: #e3ebe7;   /* tinted surface */
+  --c-maroon: #8b1a2b;         /* maroon accent */
+  --c-maroon-dark: #6d1421;
+  --c-gold: #b8963e;           /* gold accent (borders, lines, seals) */
+  --c-gold-deep: #7a5f1e;      /* gold dark enough for AA text on white */
+  --c-gold-soft: #f3ead3;
+
+  /* Neutrals (light gray) */
+  --c-bg: #f2f1ec;
+  --c-surface: #ffffff;
+  --c-surface-2: #eceae2;
+  --c-text: #1c2321;
+  --c-text-muted: #57635d;
+  --c-border: #d9d6cc;
+  --c-border-strong: #b9b5a8;
+  --c-white: #ffffff;
+
+  /* Plate object colors (physical plate, fixed regardless of theme) */
+  --plate-face: #f8f5ec;
+  --plate-edge: #1a4a3a;
+  --plate-gold: #b8963e;
+  --flag-red: #ce1126;
+  --flag-black: #101010;
+  --flag-green: #1a4a3a;
+
+  /* Status */
+  --c-ok: #1a4a3a;
+  --c-warn: #8b6a14;
+  --c-warn-soft: #f6edda;
+  --c-danger: #8b1a2b;
+  --c-danger-soft: #f6e3e6;
+
+  /* Type */
+  --font-sans: "Cairo", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --fs-xs: 0.78rem;
+  --fs-sm: 0.9rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.15rem;
+  --fs-xl: 1.45rem;
+  --fs-2xl: clamp(1.7rem, 1.2rem + 2.2vw, 2.6rem);
+  --fs-hero: clamp(1.9rem, 1.1rem + 4vw, 3.4rem);
+  --lh-tight: 1.25;
+  --lh-base: 1.65;
+
+  /* Spacing (4px scale) */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+
+  /* Shape — flat, institutional */
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-pill: 999px;
+
+  /* Elevation (kept subtle — flat surfaces) */
+  --shadow-1: 0 1px 2px rgba(15, 46, 36, 0.10);
+  --shadow-2: 0 2px 10px rgba(15, 46, 36, 0.12);
+
+  /* Layout */
+  --container: 1200px;
+  --header-h: 64px;
+
+  /* Focus (WCAG) */
+  --focus-ring: 3px solid var(--c-gold);
+  --focus-offset: 2px;
+
+  /* Motion */
+  --dur: 180ms;
+}
