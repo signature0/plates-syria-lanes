@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>التسجيل — وزارة النقل</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body data-page="register">
+<div id="hdr"></div>
+
+<main class="container page" style="max-width:860px">
+  <div class="page-head">
+    <span class="eyebrow" data-i18n="nav.register">التسجيل</span>
+    <h1 data-i18n="reg.title">التسجيل والتحقق</h1>
+    <p class="lead" data-i18n="reg.sub">نموذج تجريبي — لا يتم تخزين أي بيانات خارج متصفحك</p>
+  </div>
+
+  <div class="stepper" id="stepper">
+    <div class="st is-active" data-st="1"><span class="st-num">1</span><span data-i18n="reg.step1">البيانات الشخصية</span></div>
+    <div class="st-line"></div>
+    <div class="st" data-st="2"><span class="st-num">2</span><span data-i18n="reg.step2">الكفالة</span></div>
+    <div class="st-line"></div>
+    <div class="st" data-st="3"><span class="st-num">3</span><span data-i18n="reg.step3">الاعتماد</span></div>
+  </div>
+
+  <!-- Step 1: identity -->
+  <div class="card card-pad" id="step-1">
+    <div class="form-row">
+      <div class="field">
+        <label for="r-name" data-i18n="reg.name">الاسم الكامل</label>
+        <input class="input" id="r-name" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="r-phone" data-i18n="reg.phone">رقم الهاتف</label>
+        <input class="input" id="r-phone" inputmode="numeric" maxlength="10" autocomplete="off" dir="ltr" style="text-align:end">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="field">
+        <label for="r-email" data-i18n="reg.email">البريد الإلكتروني</label>
+        <input class="input" id="r-email" type="email" dir="ltr" style="text-align:end" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="r-doctype" data-i18n="reg.doctype">نوع الوثيقة</label>
+        <select class="input" id="r-doctype">
+          <option value="id" data-i18n="doc.id">بطاقة شخصية سورية</option>
+          <option value="passport" data-i18n="doc.passport">جواز سفر (مغترب)</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label for="r-docnum" data-i18n="reg.docnum">رقم الوثيقة</label>
+      <input class="input" id="r-docnum" inputmode="numeric" maxlength="10" autocomplete="off" dir="ltr" style="text-align:end">
+    </div>
+    <div class="reg-err" id="reg-err" style="display:none;color:var(--c-maroon);font-weight:700;font-size:var(--fs-sm)" data-i18n="reg.err.required">يرجى تعبئة جميع الحقول المطلوبة.</div>
+    <button class="btn btn-primary" id="btn-next1" type="button" data-i18n="reg.next">متابعة</button>
+  </div>
+
+  <!-- Step 2: deposit -->
+  <div class="card card-pad" id="step-2" style="display:none">
+    <p class="lead" data-i18n="reg.deposit.d" style="margin-bottom:var(--sp-4)"></p>
+    <div class="field">
+      <span data-i18n="reg.rail">وسيلة السداد</span>
+      <div class="radio-cards">
+        <label class="radio-card"><input type="radio" name="r-rail" value="bank" checked>
+          <span class="rc-box"><strong data-i18n="rail.bank">تحويل بنكي</strong><small data-i18n="rail.bank.d">إيداع في حساب الخزينة</small></span></label>
+        <label class="radio-card"><input type="radio" name="r-rail" value="ecash">
+          <span class="rc-box"><strong data-i18n="rail.ecash">دفع إلكتروني</strong><small data-i18n="rail.ecash.d">عبر المحافظ الإلكترونية</small></span></label>
+        <label class="radio-card"><input type="radio" name="r-rail" value="card">
+          <span class="rc-box"><strong data-i18n="rail.card">بوابة بطاقات</strong><small data-i18n="rail.card.d">الدفع الوطني</small></span></label>
+      </div>
+    </div>
+    <div class="field" style="max-width:360px">
+      <label for="r-deposit" data-i18n="reg.deposit.amt">قيمة الكفالة (ل.س)</label>
+      <input class="input" id="r-deposit" inputmode="numeric" value="5000000" autocomplete="off">
+    </div>
+    <div class="reg-err" id="reg-err2" style="display:none;color:var(--c-maroon);font-weight:700;font-size:var(--fs-sm)"></div>
+    <div class="flex-between">
+      <button class="btn btn-ghost" id="btn-back2" type="button" data-i18n="reg.back">رجوع</button>
+      <button class="btn btn-primary" id="btn-pay" type="button" data-i18n="reg.pay">تأكيد الدفع (محاكاة)</button>
+    </div>
+  </div>
+
+  <!-- Step 3: approved -->
+  <div id="step-3" style="display:none"></div>
+</main>
+
+<div id="ftr"></div>
+<div id="toast-root"></div>
+
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pages/register.js"></script>
+</body>
+</html>
