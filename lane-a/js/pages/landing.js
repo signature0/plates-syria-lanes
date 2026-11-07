@@ -77,7 +77,7 @@
     }
     function go(n) {
       idx = (n + slides.length) % slides.length;
-      track.style.transform = "translateX(" + (document.documentElement.dir === "rtl" ? idx * 100 : -idx * 100) + "%)";
+      for (var q = 0; q < slides.length; q++) slides[q].classList.toggle("is-active", q === idx);
       var bs = dots.children;
       for (var k = 0; k < bs.length; k++) bs[k].setAttribute("aria-selected", k === idx ? "true" : "false");
     }

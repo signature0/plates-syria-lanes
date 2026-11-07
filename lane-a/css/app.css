@@ -870,8 +870,9 @@ table.data tr:hover td { background: var(--c-primary-soft); }
 .promo-banner h3::after{display:none}
 .promo-banner p{margin:0;color:#f0ecdf;max-width:52ch;font-size:var(--fs-sm,14px)}
 .promo-cta{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;background:#b8963e;color:#0f2e24;font-weight:800;padding:11px 20px;border-radius:10px;white-space:nowrap}
-.promo-banner .promo-plates{position:absolute;inset-inline-end:-30px;top:50%;transform:translateY(-50%) rotate(6deg);width:min(46%,320px);opacity:.28;pointer-events:none}
-@media (max-width:720px){.promo-banner .promo-inner{flex-direction:column;align-items:flex-start;padding:20px}.promo-cta{align-self:stretch;justify-content:center}.promo-banner .promo-plates{display:none}}
+.hs-slide{overflow:hidden}
+.hs-slide .promo-plates{position:absolute;inset-inline-end:-30px;top:50%;transform:translateY(-50%) rotate(6deg);width:min(46%,320px);opacity:.28;pointer-events:none}
+@media (max-width:720px){.promo-banner .promo-inner{flex-direction:column;align-items:flex-start;padding:20px}.promo-cta{align-self:stretch;justify-content:center}.hs-slide .promo-plates{display:none}}
 
 /* PO fix: mobile plate comfort — smaller on phones, breathing room */
 @media (max-width: 720px) {
@@ -886,11 +887,11 @@ table.data tr:hover td { background: var(--c-primary-soft); }
 .cta-band h2,.cta-band p,.cta-band .eyebrow{color:#fff}
 .cta-band p,.cta-band .text-muted{opacity:.92}
 /* promo ghost plate needs separation from the card edge */
-.promo-banner .promo-plates{opacity:.4;filter:drop-shadow(0 2px 10px rgba(0,0,0,.55))}
+.promo-banner .hs-slide .promo-plates{opacity:.4;filter:drop-shadow(0 2px 10px rgba(0,0,0,.55))}
 
 /* ---------- hero promo slider (PO: editions/gift/family carousel) ---------- */
 .hero-slider{position:relative;margin-block:var(--sp-5);border-radius:var(--radius-lg);overflow:hidden}
-.hs-track{display:flex;transition:transform .55s cubic-bezier(.22,.8,.3,1)}
+.hs-track{display:flex;transition:transform .55s cubic-bezier(.22,.8,.3,1);will-change:transform}
 .hs-slide{flex:0 0 100%;min-width:100%}
 .hero-slider .promo-banner{margin-block:0;border-radius:0}
 .hs-dots{position:absolute;bottom:12px;inset-inline-end:16px;display:flex;gap:8px;z-index:3}
@@ -920,3 +921,24 @@ table.data tr:hover td { background: var(--c-primary-soft); }
 /* editions slide art: keep floating plates visible on tablets too, tuck them clear of copy */
 @media (max-width: 900px) and (min-width: 721px){.ed-mini{width:130px}.ed-mini-royal{inset-inline-end:14%}}
 .promo-banner .promo-inner{padding-inline-end:clamp(30px,22%,260px)}
+
+/* promo grid (below-fold repeat of the 3 banners, PO request) */
+.promo-grid{margin-block:0}
+.pg-track{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--sp-4)}
+.pg-card{border-radius:var(--radius-lg);margin-block:0}
+.pg-card .promo-inner{padding:20px 22px;min-height:210px;flex-direction:column;align-items:flex-start;justify-content:flex-end}
+.pg-card .btn{align-self:flex-start}
+@media (max-width:900px){.pg-card .ed-mini{display:none}}
+
+/* grid cards: decorative plates hidden entirely (cleaner), slider keeps them */
+.promo-grid .promo-plates,.promo-grid .fam-plates{display:none}
+
+/* slider v3 (PO "plate still broken" root fix): stacked slides, JS toggles .is-active.
+   Slides never translate off-screen, so nothing leaks out of the document width. */
+.hs-track{position:relative;align-items:stretch;transform:none !important}
+.hs-slide{flex:none;width:100%}
+.hero-slider .hs-slide{display:none}
+.hero-slider .hs-slide.is-active{display:block}
+
+/* belt & braces: slider window must never leak horizontally */
+.hero-slider{overflow-x:hidden}
