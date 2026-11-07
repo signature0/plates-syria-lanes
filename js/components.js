@@ -265,7 +265,7 @@
     } else if (l.mode === "auction") {
       priceHTML = '<div class="listing-price">' + SP.fmtSYP(l.price) + "</div>" +
         '<div class="listing-end">' + t("mkt.inc") + ": " + SP.fmtSYP(l.increment) + "</div>" +
-        '<div class="listing-end">' + t("mkt.ends") + ' <span class="countdown" data-countdown="' + l.endsAt + '">"' +
+        '<div class="listing-end">' + t("mkt.ends") + ' <span class="countdown" data-countdown="' + l.endsAt + '">' +
         SP.fmtCountdown(l.endsAt - Date.now(), t("card.ended")) + "</span></div>";
     } else {
       priceHTML = '<div class="listing-price" style="font-size:var(--fs-md)">' + t("mode.offer") + "</div>";
