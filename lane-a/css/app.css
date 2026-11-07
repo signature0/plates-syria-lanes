@@ -862,11 +862,13 @@ table.data tr:hover td { background: var(--c-primary-soft); }
 .promo-banner{display:block;position:relative;border-radius:var(--r-lg,16px);overflow:hidden;color:#fff;text-decoration:none;margin-bottom:var(--sp-5,28px);border:1px solid rgba(184,150,62,.35)}
 .promo-banner .promo-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s ease}
 .promo-banner:hover .promo-bg{transform:scale(1.04)}
-.promo-banner .promo-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:26px 30px;min-height:150px;background:linear-gradient(90deg,rgba(10,36,28,.94) 30%,rgba(10,36,28,.62))}
-[dir="rtl"] .promo-banner .promo-inner{background:linear-gradient(270deg,rgba(10,36,28,.94) 30%,rgba(10,36,28,.62))}
-.promo-kicker{display:inline-block;font-size:var(--fs-xs,12px);font-weight:800;letter-spacing:.6px;color:#b8963e;border:1px solid rgba(184,150,62,.5);padding:3px 10px;border-radius:999px;margin-bottom:10px}
-.promo-banner h3{margin:0 0 6px;font-size:clamp(19px,2.6vw,26px);line-height:1.35}
-.promo-banner p{margin:0;color:#e8e4d8;max-width:52ch;font-size:var(--fs-sm,14px)}
+.promo-banner .promo-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:26px 30px;min-height:150px;background:linear-gradient(90deg,#0f2e24 55%,rgba(15,46,36,.78))}
+[dir="rtl"] .promo-banner .promo-inner{background:linear-gradient(270deg,#0f2e24 55%,rgba(15,46,36,.78))}
+.promo-kicker{display:inline-block;font-size:var(--fs-xs,12px);font-weight:800;letter-spacing:.6px;color:#e9c46a;background:rgba(184,150,62,.14);border:1px solid rgba(233,196,106,.55);padding:3px 10px;border-radius:999px;margin-bottom:10px}
+/* WCAG AA pass — PO design directive: headings must not inherit green-on-green */
+.promo-banner h3{margin:0 0 6px;font-size:clamp(19px,2.6vw,26px);line-height:1.35;color:#fff}
+.promo-banner h3::after{display:none}
+.promo-banner p{margin:0;color:#f0ecdf;max-width:52ch;font-size:var(--fs-sm,14px)}
 .promo-cta{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;background:#b8963e;color:#0f2e24;font-weight:800;padding:11px 20px;border-radius:10px;white-space:nowrap}
 .promo-banner .promo-plates{position:absolute;inset-inline-end:-30px;top:50%;transform:translateY(-50%) rotate(6deg);width:min(46%,320px);opacity:.28;pointer-events:none}
 @media (max-width:720px){.promo-banner .promo-inner{flex-direction:column;align-items:flex-start;padding:20px}.promo-cta{align-self:stretch;justify-content:center}.promo-banner .promo-plates{display:none}}
@@ -878,3 +880,10 @@ table.data tr:hover td { background: var(--c-primary-soft); }
   #sp-results .card{padding:10px}
   #sp-results .plate-svg{width:96%}
 }
+
+/* ---- PO WCAG sweep: overlay text must never inherit dark-on-dark ---- */
+.hero .eyebrow{color:#e9c46a}
+.cta-band h2,.cta-band p,.cta-band .eyebrow{color:#fff}
+.cta-band p,.cta-band .text-muted{opacity:.92}
+/* promo ghost plate needs separation from the card edge */
+.promo-banner .promo-plates{opacity:.4;filter:drop-shadow(0 2px 10px rgba(0,0,0,.55))}
