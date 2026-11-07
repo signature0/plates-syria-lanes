@@ -16,15 +16,19 @@
     return pts.join(" ");
   };
 
-  /* Syrian flag (simplified, official colors), drawn at x,y with w,h. */
+  /* Syrian flag — NEW official flag (adopted 13 March 2025):
+     horizontal stripes green / white / black with THREE red five-pointed
+     stars centered in the white stripe. Drawn at x,y with w,h. */
   C.flagSVG = function (x, y, w, h) {
     var sh = h / 3;
+    var r = Math.max(2.2, h * 0.13); // star radius scales with flag height
     return '<g transform="translate(' + x + "," + y + ')" aria-hidden="true">' +
-      '<rect width="' + w + '" height="' + h + '" fill="#f5f5f0" stroke="#101010" stroke-width="0.8"/>' +
-      '<rect width="' + w + '" height="' + sh.toFixed(2) + '" fill="#ce1126"/>' +
-      '<rect y="' + (h - sh).toFixed(2) + '" width="' + w + '" height="' + sh.toFixed(2) + '" fill="#101010"/>' +
-      '<polygon points="' + C.starPoints(w * 0.36, sh, 3.4) + '" fill="#1a4a3a"/>' +
-      '<polygon points="' + C.starPoints(w * 0.64, sh, 3.4) + '" fill="#1a4a3a"/>' +
+      '<rect width="' + w + '" height="' + h + '" fill="#ffffff" stroke="#101010" stroke-width="0.8"/>' +
+      '<rect width="' + w + '" height="' + sh.toFixed(2) + '" fill="#007a3d"/>' +
+      '<rect y="' + (h - sh).toFixed(2) + '" width="' + w + '" height="' + sh.toFixed(2) + '" fill="#131313"/>' +
+      '<polygon points="' + C.starPoints(w * 0.3, h / 2, r) + '" fill="#ce1126"/>' +
+      '<polygon points="' + C.starPoints(w * 0.5, h / 2, r) + '" fill="#ce1126"/>' +
+      '<polygon points="' + C.starPoints(w * 0.7, h / 2, r) + '" fill="#ce1126"/>' +
       "</g>";
   };
 
