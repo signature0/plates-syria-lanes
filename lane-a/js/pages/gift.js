@@ -127,7 +127,9 @@
         p[0].slice(-1) + m + dd
       ];
       bases.forEach(function (b) {
-        var avail = isTaken(b) ? nearNumber(b) : b;
+        /* a birthday gift should keep the exact date when possible — prefer
+           showing the literal number, availability is flagged honestly */
+        var avail = b;
         if (avail && !results.some(function (r) { return r.number === avail; }))
           results.push({ number: avail, why: "bd", pattern: "" });
       });
