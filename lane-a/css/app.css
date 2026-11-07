@@ -848,3 +848,25 @@ table.data tr:hover td { background: var(--c-primary-soft); }
 .footer-credit{font-size:var(--fs-sm,14px);font-weight:700;letter-spacing:.2px}
 .footer-credit a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 [dir="rtl"] .footer-credit,[dir="rtl"] .footer-credit a{direction:ltr;unicode-bidi:isolate;font-family:"Cairo",sans-serif}
+
+/* ---- PO mobile directive: plates a bit smaller, comfortable margins on phones ---- */
+@media (max-width: 720px) {
+  .container{padding-inline:14px}
+  .card{padding:14px}
+  .plate-svg{width:92%;margin-inline:auto}
+  .detail-plate .plate-svg{max-width:none;width:96%}
+  .car-mock svg{max-width:96%}
+}
+
+/* ---- PO directive: home-page section banners (gift + family) ---- */
+.promo-banner{display:block;position:relative;border-radius:var(--r-lg,16px);overflow:hidden;color:#fff;text-decoration:none;margin-bottom:var(--sp-5,28px);border:1px solid rgba(184,150,62,.35)}
+.promo-banner .promo-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s ease}
+.promo-banner:hover .promo-bg{transform:scale(1.04)}
+.promo-banner .promo-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:26px 30px;min-height:150px;background:linear-gradient(90deg,rgba(10,36,28,.94) 30%,rgba(10,36,28,.62))}
+[dir="rtl"] .promo-banner .promo-inner{background:linear-gradient(270deg,rgba(10,36,28,.94) 30%,rgba(10,36,28,.62))}
+.promo-kicker{display:inline-block;font-size:var(--fs-xs,12px);font-weight:800;letter-spacing:.6px;color:#b8963e;border:1px solid rgba(184,150,62,.5);padding:3px 10px;border-radius:999px;margin-bottom:10px}
+.promo-banner h3{margin:0 0 6px;font-size:clamp(19px,2.6vw,26px);line-height:1.35}
+.promo-banner p{margin:0;color:#e8e4d8;max-width:52ch;font-size:var(--fs-sm,14px)}
+.promo-cta{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;background:#b8963e;color:#0f2e24;font-weight:800;padding:11px 20px;border-radius:10px;white-space:nowrap}
+.promo-banner .promo-plates{position:absolute;inset-inline-end:-30px;top:50%;transform:translateY(-50%) rotate(6deg);width:min(46%,320px);opacity:.28;pointer-events:none}
+@media (max-width:720px){.promo-banner .promo-inner{flex-direction:column;align-items:flex-start;padding:20px}.promo-cta{align-self:stretch;justify-content:center}.promo-banner .promo-plates{display:none}}

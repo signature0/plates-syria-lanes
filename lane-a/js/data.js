@@ -57,7 +57,7 @@
 
   /* 20 live auctions across 14 governorates (≥18 required, ≥6 govts). */
   var AUCTIONS = [
-    { id: "A-001", gov: "damascus", number: "77777", reserve: 450000000,  current: 380000000,  endsIn: 95 * 1000,  ladder: 6 },
+    { id: "A-001", gov: "damascus", number: "77777", reserve: 450000000, current: 380000000, endsIn: 95 * 1000, ladder: 6 },
     { id: "A-002", gov: "damascus", number: "12345", reserve: 60000000,   current: 75000000,   endsIn: 3 * M,      ladder: 5 },
     { id: "A-003", gov: "damascus", number: "11223", reserve: 20000000,   current: 22000000,   endsIn: 15 * M,     ladder: 4 },
     { id: "A-004", gov: "damascus", number: "80808", reserve: 130000000,  current: 105000000,  endsIn: 26 * H,     ladder: 5 },
