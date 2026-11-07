@@ -916,3 +916,7 @@ table.data tr:hover td { background: var(--c-primary-soft); }
 .ed-mini-gold{top:-26px;inset-inline-end:7%;transform:rotate(8deg)}
 .ed-mini-royal{bottom:-30px;inset-inline-end:19%;transform:rotate(-6deg)}
 @media (max-width:900px){.ed-mini{display:none}}
+
+/* editions slide art: keep floating plates visible on tablets too, tuck them clear of copy */
+@media (max-width: 900px) and (min-width: 721px){.ed-mini{width:130px}.ed-mini-royal{inset-inline-end:14%}}
+.promo-banner .promo-inner{padding-inline-end:clamp(30px,22%,260px)}
