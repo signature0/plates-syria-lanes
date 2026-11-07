@@ -39,6 +39,34 @@
     var SP = window.SP;
     var gov = SP.govAr(p.gov);
     var num = SP.numDigits(p.number);
+    var ed = p.edition || "standard";
+    var uid = "x" + (C._uid = (C._uid || 0) + 1);
+    if (ed === "golden") {
+      return (
+        '<defs><linearGradient id="gldP' + uid + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3d98b"/><stop offset=".5" stop-color="#d4af37"/><stop offset="1" stop-color="#a8801c"/></linearGradient></defs>' +
+        '<rect x="3" y="3" width="454" height="144" rx="10" fill="url(#gldP'+uid+')" stroke="#6e5311" stroke-width="6"/>' +
+        '<rect x="13" y="13" width="434" height="124" rx="7" fill="none" stroke="#fff3c4" stroke-width="2"/>' +
+        C.flagSVG(24, 28, 54, 34) +
+        '<text x="51" y="86" text-anchor="middle" font-family="Cairo, sans-serif" font-size="16" font-weight="800" letter-spacing="2" fill="#3d2f0a">SYR</text>' +
+        '<line x1="98" y1="26" x2="98" y2="124" stroke="#6e5311" stroke-width="1.5"/>' +
+        '<text x="218" y="108" text-anchor="middle" direction="ltr" font-family="Cairo, sans-serif" font-size="70" font-weight="900" letter-spacing="4" fill="#3d2f0a">' + num + "</text>" +
+        '<line x1="340" y1="26" x2="340" y2="124" stroke="#6e5311" stroke-width="1.5"/>' +
+        '<text x="437" y="50" text-anchor="end" direction="rtl" font-family="Cairo, sans-serif" font-size="21" font-weight="800" fill="#3d2f0a">' + gov + "</text>"
+      );
+    }
+    if (ed === "royal") {
+      return (
+        '<defs><linearGradient id="royP' + uid + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#26262b"/><stop offset=".5" stop-color="#101014"/><stop offset="1" stop-color="#000"/></linearGradient></defs>' +
+        '<rect x="3" y="3" width="454" height="144" rx="10" fill="url(#royP'+uid+')" stroke="#b8963e" stroke-width="6"/>' +
+        '<rect x="13" y="13" width="434" height="124" rx="7" fill="none" stroke="rgba(233,196,106,.5)" stroke-width="2"/>' +
+        C.flagSVG(24, 28, 54, 34) +
+        '<text x="51" y="86" text-anchor="middle" font-family="Cairo, sans-serif" font-size="16" font-weight="800" letter-spacing="2" fill="#e9c46a">SYR</text>' +
+        '<line x1="98" y1="26" x2="98" y2="124" stroke="#b8963e" stroke-width="1.5"/>' +
+        '<text x="218" y="108" text-anchor="middle" direction="ltr" font-family="Cairo, sans-serif" font-size="70" font-weight="900" letter-spacing="4" fill="#f5f2ea">' + num + "</text>" +
+        '<line x1="340" y1="26" x2="340" y2="124" stroke="#b8963e" stroke-width="1.5"/>' +
+        '<text x="437" y="50" text-anchor="end" direction="rtl" font-family="Cairo, sans-serif" font-size="21" font-weight="800" fill="#e9c46a">' + gov + "</text>"
+      );
+    }
     return (
       '<rect x="3" y="3" width="454" height="144" rx="10" fill="#f8f5ec" stroke="#1a4a3a" stroke-width="6"/>' +
       '<rect x="13" y="13" width="434" height="124" rx="7" fill="none" stroke="#b8963e" stroke-width="2"/>' +

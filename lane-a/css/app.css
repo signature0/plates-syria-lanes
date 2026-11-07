@@ -887,3 +887,32 @@ table.data tr:hover td { background: var(--c-primary-soft); }
 .cta-band p,.cta-band .text-muted{opacity:.92}
 /* promo ghost plate needs separation from the card edge */
 .promo-banner .promo-plates{opacity:.4;filter:drop-shadow(0 2px 10px rgba(0,0,0,.55))}
+
+/* ---------- hero promo slider (PO: editions/gift/family carousel) ---------- */
+.hero-slider{position:relative;margin-block:var(--sp-5);border-radius:var(--radius-lg);overflow:hidden}
+.hs-track{display:flex;transition:transform .55s cubic-bezier(.22,.8,.3,1)}
+.hs-slide{flex:0 0 100%;min-width:100%}
+.hero-slider .promo-banner{margin-block:0;border-radius:0}
+.hs-dots{position:absolute;bottom:12px;inset-inline-end:16px;display:flex;gap:8px;z-index:3}
+.hs-dots button{width:10px;height:10px;border-radius:50%;border:1.5px solid #e9c46a;background:transparent;padding:0;cursor:pointer;transition:background .2s,transform .2s}
+.hs-dots button[aria-selected="true"]{background:#e9c46a;transform:scale(1.25)}
+.hs-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:38px;height:38px;border-radius:50%;border:1px solid rgba(233,196,106,.6);background:rgba(10,36,28,.72);color:#e9c46a;font-size:24px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.hs-arrow:hover{background:rgba(10,36,28,.95)}
+.hs-prev{inset-inline-start:10px}.hs-next{inset-inline-end:10px}
+@media (max-width:720px){.hs-arrow{display:none}}
+@media (prefers-reduced-motion: reduce){.hs-track{transition:none}}
+
+/* editions page */
+.ed-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--sp-5)}
+.ed-card{text-align:center;padding:28px}
+.ed-hero-plate{width:min(340px,90%);margin-bottom:16px;filter:drop-shadow(0 8px 22px rgba(0,0,0,.25))}
+.ed-gold{border-top:4px solid #d4af37}
+.ed-royal{border-top:4px solid #101014;background:linear-gradient(180deg,#fffdf6,#f6f2e4)}
+[data-theme="dark"] .ed-royal{background:linear-gradient(180deg,#16181c,#0d0e11)}
+.ed-price{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:14px 0 18px;font-size:var(--fs-lg)}
+.ed-price s{color:var(--c-text-muted)}
+.ed-was{color:var(--c-text-muted);font-weight:400}
+.ed-mini{position:absolute;width:190px;filter:drop-shadow(0 10px 24px rgba(0,0,0,.5));z-index:1}
+.ed-mini-gold{top:-26px;inset-inline-end:7%;transform:rotate(8deg)}
+.ed-mini-royal{bottom:-30px;inset-inline-end:19%;transform:rotate(-6deg)}
+@media (max-width:900px){.ed-mini{display:none}}

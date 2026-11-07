@@ -60,4 +60,41 @@
   window.SP.onChange.push(render);
   render();
   window.SP.startTicker();
+
+  /* ---------- promo slider ---------- */
+  (function () {
+    var root = document.getElementById("promo-slider");
+    if (!root) return;
+    var track = root.querySelector(".hs-track");
+    var slides = track.children, idx = 0, timer = null;
+    var dots = root.querySelector(".hs-dots");
+    for (var d = 0; d < slides.length; d++) {
+      var b = document.createElement("button");
+      b.type = "button"; b.setAttribute("role", "tab");
+      b.setAttribute("aria-label", "slide " + (d + 1));
+      (function (n) { b.addEventListener("click", function (ev) { ev.preventDefault(); ev.stopPropagation(); go(n); rest(); }); })(d);
+      dots.appendChild(b);
+    }
+    function go(n) {
+      idx = (n + slides.length) % slides.length;
+      track.style.transform = "translateX(" + (document.documentElement.dir === "rtl" ? idx * 100 : -idx * 100) + "%)";
+      var bs = dots.children;
+      for (var k = 0; k < bs.length; k++) bs[k].setAttribute("aria-selected", k === idx ? "true" : "false");
+    }
+    function rest() { if (timer) clearInterval(timer); timer = setInterval(function () { go(idx + 1); }, 6000); }
+    root.querySelector(".hs-next").addEventListener("click", function (ev) { ev.preventDefault(); ev.stopPropagation(); go(idx + 1); rest(); });
+    root.querySelector(".hs-prev").addEventListener("click", function (ev) { ev.preventDefault(); ev.stopPropagation(); go(idx - 1); rest(); });
+    root.addEventListener("mouseenter", function () { if (timer) clearInterval(timer); });
+    root.addEventListener("mouseleave", rest);
+    var sx = null;
+    root.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    root.addEventListener("touchend", function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 42) { go(idx + (dx < 0 ? 1 : -1)); rest(); }
+      sx = null;
+    }, { passive: true });
+    go(0); rest();
+  })();
+
 })();

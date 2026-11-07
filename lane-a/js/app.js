@@ -183,6 +183,7 @@
       { href: "auctions.html", key: "nav.auctions", id: "auctions" },
       { href: "governorate.html", key: "nav.governorates", id: "governorates" },
       { href: "marketplace.html", key: "nav.marketplace", id: "marketplace" },
+      { href: "editions.html", key: "nav.editions", id: "editions" },
       { href: "tools.html", key: "nav.tools", id: "tools" },
       { href: "results.html", key: "nav.results", id: "results" }
     ],
@@ -236,7 +237,7 @@
         '<li><a href="auctions.html" data-i18n="nav.auctions">' + t("nav.auctions") + "</a></li>" +
         '<li><a href="governorate.html" data-i18n="nav.governorates">' + t("nav.governorates") + "</a></li>" +
         '<li><a href="marketplace.html" data-i18n="nav.marketplace">' + t("nav.marketplace") + "</a></li>" +
-        '<li><a href="tools.html" data-i18n="nav.tools">' + t("nav.tools") + "</a></li>" +
+        '<li><a href="editions.html" data-i18n="nav.editions">' + t("nav.editions") + "</a></li>" +        '<li><a href="tools.html" data-i18n="nav.tools">' + t("nav.tools") + "</a></li>" +
         '<li><a href="results.html" data-i18n="nav.results">' + t("nav.results") + "</a></li>" +
         '<li><a href="packages.html" data-i18n="pkg.title">' + t("pkg.title") + "</a></li>" +
         '<li><a href="gift.html" data-i18n="gift.title">' + t("gift.title") + "</a></li>" +
