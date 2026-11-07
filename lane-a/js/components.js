@@ -87,10 +87,9 @@
     var ax = 874 - x; /* mirror coordinate for RTL-in-RTL rendering: right edge lands at x */
     var fs = Math.min(14, Math.floor(92 / (n * 0.62)));
     fs = Math.max(10, fs);
-    /* the SVG inherits document RTL; Chrome's glyph run for an RTL string anchored
-       at x with text-anchor:middle is correct regardless of dir, so center it. */
-    var cx = (348 + 442) / 2; /* governorate zone centre */
-    return '<text x="' + cx + '" y="' + y + '" text-anchor="middle" direction="rtl" font-family="Cairo, sans-serif" font-size="' + fs + '" font-weight="800" fill="' + fill + '">' + gov + "</text>";
+    /* the SVG inherits document RTL: x is the RIGHT edge of the run, text grows leftward.
+       Anchor at 442 (inner right pad) so even long names stay inside the border. */
+    return '<text x="' + (x - 4) + '" y="' + y + '" text-anchor="start" direction="rtl" font-family="Cairo, sans-serif" font-size="' + fs + '" font-weight="800" fill="' + fill + '">' + gov + "</text>";
   };
 
   C.plateSVG = function (p, opts) {
