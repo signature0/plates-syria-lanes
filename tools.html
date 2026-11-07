@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الأدوات — وزارة النقل</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body data-page="tools">
+<div id="hdr"></div>
+
+<main class="container page">
+  <div class="page-head">
+    <span class="eyebrow" data-i18n="nav.tools">الأدوات</span>
+    <h1 data-i18n="tools.title">أدوات المالك والمزايد</h1>
+    <p class="lead" data-i18n="tools.sub">باحث تاريخ الميلاد وأداة تقييم اللوحات</p>
+  </div>
+
+  <div class="tool-panel card">
+    <h2 data-i18n="val.title">أداة التقدير</h2>
+    <p class="lead" data-i18n="val.d" style="margin-bottom:var(--sp-4)"></p>
+    <div class="form-row" style="max-width:560px">
+      <div class="field">
+        <label for="val-num" data-i18n="val.number">رقم اللوحة (5 أرقام)</label>
+        <input class="input" id="val-num" inputmode="numeric" maxlength="5" autocomplete="off">
+      </div>
+      <div class="field" style="display:flex;align-items:flex-end">
+        <button class="btn btn-primary" id="btn-val" type="button" data-i18n="val.check">قيّم الرقم</button>
+      </div>
+    </div>
+    <div id="val-result" class="tool-result" style="display:none"></div>
+  </div>
+
+  <div class="tool-panel card section">
+    <h2 data-i18n="bd.title">باحث تاريخ الميلاد</h2>
+    <p class="lead" data-i18n="bd.d" style="margin-bottom:var(--sp-4)"></p>
+    <div class="form-row" style="max-width:560px">
+      <div class="field">
+        <label for="bd-date" data-i18n="bd.date">تاريخ الميلاد</label>
+        <input class="input" id="bd-date" type="date">
+      </div>
+      <div class="field" style="display:flex;align-items:flex-end">
+        <button class="btn btn-gold" id="btn-bd" type="button" data-i18n="bd.search">ابحث</button>
+      </div>
+    </div>
+    <div id="bd-result" class="tool-result" style="display:none"></div>
+  </div>
+</main>
+
+<div id="ftr"></div>
+<div id="toast-root"></div>
+
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pages/tools.js"></script>
+</body>
+</html>
