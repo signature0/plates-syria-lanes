@@ -371,9 +371,11 @@ table.data tr:hover td { background: var(--c-primary-soft); }
   color: #fff;
   overflow: hidden;
   /* Shared asset (assets/img/banner-16x9.jpg) absent in this lane's repo —
-     CSS fallback per spec: institutional deep-green field + gold rule. */
+     CSS fallback per spec. If the file appears, it composites under the
+     gradient scrim automatically (missing images render nothing, no error). */
   background-image:
     linear-gradient(180deg, rgba(15, 46, 36, 0.2), rgba(15, 46, 36, 0.85)),
+    url(assets/img/banner-16x9.jpg) center / cover no-repeat,
     repeating-linear-gradient(135deg, #143c30 0 26px, #12362b 26px 52px);
   border-bottom: 4px solid var(--c-gold);
 }
