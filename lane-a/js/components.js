@@ -79,14 +79,12 @@
     );
   };
 
-  function textWidthPx(str, fs) {
-    // Arabic Cairo ~0.52em avg advance; spaces narrower
-    return String(str).length * fs * 0.56;
-  }
   C.govLabel = function (x, y, gov, fill) {
-    var avail = x - 348; /* divider at 340 + pad */
-    var fs = Math.min(21, Math.floor(avail / (String(gov).length * 0.56)));
-    fs = Math.max(11, fs);
+    /* PO: governorate must NEVER clip. Hard cap 14px fits even "الحسكة" inside x=340..446
+       with margin; longer names shrink further (min 10). */
+    var n = String(gov).length;
+    var fs = Math.min(14, Math.floor(92 / (n * 0.62)));
+    fs = Math.max(10, fs);
     return '<text x="' + x + '" y="' + y + '" text-anchor="end" direction="rtl" font-family="Cairo, sans-serif" font-size="' + fs + '" font-weight="800" fill="' + fill + '">' + gov + "</text>";
   };
 
