@@ -51,7 +51,7 @@
         '<line x1="98" y1="26" x2="98" y2="124" stroke="#6e5311" stroke-width="1.5"/>' +
         '<text x="218" y="108" text-anchor="middle" direction="ltr" font-family="Cairo, sans-serif" font-size="70" font-weight="900" letter-spacing="4" fill="#3d2f0a">' + num + "</text>" +
         '<line x1="340" y1="26" x2="340" y2="124" stroke="#6e5311" stroke-width="1.5"/>' +
-        '<text x="437" y="50" text-anchor="end" direction="rtl" font-family="Cairo, sans-serif" font-size="21" font-weight="800" fill="#3d2f0a">' + gov + "</text>"
+        C.govLabel(437, 50, gov, "#3d2f0a")
       );
     }
     if (ed === "royal") {
@@ -64,7 +64,7 @@
         '<line x1="98" y1="26" x2="98" y2="124" stroke="#b8963e" stroke-width="1.5"/>' +
         '<text x="218" y="108" text-anchor="middle" direction="ltr" font-family="Cairo, sans-serif" font-size="70" font-weight="900" letter-spacing="4" fill="#f5f2ea">' + num + "</text>" +
         '<line x1="340" y1="26" x2="340" y2="124" stroke="#b8963e" stroke-width="1.5"/>' +
-        '<text x="437" y="50" text-anchor="end" direction="rtl" font-family="Cairo, sans-serif" font-size="21" font-weight="800" fill="#e9c46a">' + gov + "</text>"
+        C.govLabel(437, 50, gov, "#e9c46a")
       );
     }
     return (
@@ -75,8 +75,15 @@
       '<line x1="98" y1="26" x2="98" y2="124" stroke="#b8963e" stroke-width="1.5"/>' +
       '<text x="218" y="108" text-anchor="middle" direction="ltr" font-family="Cairo, sans-serif" font-size="70" font-weight="900" letter-spacing="4" fill="#0f2e24">' + num + "</text>" +
       '<line x1="340" y1="26" x2="340" y2="124" stroke="#b8963e" stroke-width="1.5"/>' +
-      '<text x="437" y="50" text-anchor="end" direction="rtl" font-family="Cairo, sans-serif" font-size="21" font-weight="800" fill="#1a4a3a">' + gov + "</text>"
+      C.govLabel(437, 50, gov, "#1a4a3a")
     );
+  };
+
+  C.govLabel = function (x, y, gov, fill, maxW) {
+    maxW = maxW || 100;
+    var len = gov.length;
+    var fs = len <= 4 ? 21 : Math.max(12, Math.round(21 * 4 / len));
+    return '<text x="' + x + '" y="' + y + '" text-anchor="end" direction="rtl" font-family="Cairo, sans-serif" font-size="' + fs + '" font-weight="800" fill="' + fill + '">' + gov + "</text>";
   };
 
   C.plateSVG = function (p, opts) {
