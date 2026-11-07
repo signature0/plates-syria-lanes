@@ -83,9 +83,14 @@
     /* PO: governorate must NEVER clip. Hard cap 14px fits even "الحسكة" inside x=340..446
        with margin; longer names shrink further (min 10). */
     var n = String(gov).length;
+    /* SVG has direction:rtl inherited — flip anchor so text grows INWARD from x toward divider */
+    var ax = 874 - x; /* mirror coordinate for RTL-in-RTL rendering: right edge lands at x */
     var fs = Math.min(14, Math.floor(92 / (n * 0.62)));
     fs = Math.max(10, fs);
-    return '<text x="' + x + '" y="' + y + '" text-anchor="end" direction="rtl" font-family="Cairo, sans-serif" font-size="' + fs + '" font-weight="800" fill="' + fill + '">' + gov + "</text>";
+    /* the SVG inherits document RTL; Chrome's glyph run for an RTL string anchored
+       at x with text-anchor:middle is correct regardless of dir, so center it. */
+    var cx = (348 + 442) / 2; /* governorate zone centre */
+    return '<text x="' + cx + '" y="' + y + '" text-anchor="middle" direction="rtl" font-family="Cairo, sans-serif" font-size="' + fs + '" font-weight="800" fill="' + fill + '">' + gov + "</text>";
   };
 
   C.plateSVG = function (p, opts) {
