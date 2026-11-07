@@ -5,14 +5,23 @@
 
   var AR = "٠١٢٣٤٥٦٧٨٩";
 
+  /* localStorage with in-memory fallback (file:// in some engines, private mode) */
+  var memStore = {};
+  var haveLS = false;
+  try { localStorage.setItem("__sp_test", "1"); localStorage.removeItem("__sp_test"); haveLS = true; } catch (e) { haveLS = false; }
+
   function lsGet(key, fallback) {
-    try {
-      var v = localStorage.getItem(key);
-      return v === null ? fallback : JSON.parse(v);
-    } catch (e) { return fallback; }
+    if (haveLS) {
+      try {
+        var v = localStorage.getItem(key);
+        return v === null ? fallback : JSON.parse(v);
+      } catch (e) { /* fall through to memory */ }
+    }
+    return key in memStore ? memStore[key] : fallback;
   }
   function lsSet(key, val) {
-    try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { /* private mode */ }
+    memStore[key] = val;
+    if (haveLS) { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { /* ignore */ } }
   }
 
   var SP = {
@@ -119,6 +128,8 @@
       return SP.state.lang === "ar" ? g.ar : g.en;
     },
 
+    toast: function (msg, type) { window.PLATE_UI.toast(msg, type); },
+
     /* ---------- watchlist ---------- */
     watchSet: function () { return lsGet("sp.watch", []); },
     toggleWatch: function (id) {
@@ -165,8 +176,92 @@
       SP._tick = setInterval(run, 1000);
     },
 
+    /* ---------- site chrome (header + footer, injected once) ---------- */
+    NAV: [
+      { href: "index.html", key: "nav.home", id: "home" },
+      { href: "auctions.html", key: "nav.auctions", id: "auctions" },
+      { href: "governorate.html", key: "nav.governorates", id: "governorates" },
+      { href: "marketplace.html", key: "nav.marketplace", id: "marketplace" },
+      { href: "tools.html", key: "nav.tools", id: "tools" },
+      { href: "results.html", key: "nav.results", id: "results" }
+    ],
+
+    chromeHeader: function (page) {
+      var t = SP.t;
+      var nav = SP.NAV.map(function (n) {
+        var cur = n.id === page ? ' aria-current="page"' : "";
+        return '<a href="' + n.href + '"' + cur + ' data-i18n="' + n.key + '">' + t(n.key) + "</a>";
+      }).join("");
+      var header =
+        '<header class="site-header">' +
+        '<div class="container header-top">' +
+        '<a class="brand" href="index.html">' +
+        '<svg class="brand-emblem" width="42" height="42" viewBox="0 0 48 48" aria-hidden="true">' +
+        '<circle cx="24" cy="24" r="22" fill="#0f2e24" stroke="#b8963e" stroke-width="2.5"/>' +
+        '<circle cx="24" cy="24" r="16.5" fill="none" stroke="#b8963e" stroke-width="1"/>' +
+        '<polygon points="24,12 26.96,19.92 35.41,20.29 26.96,25.55 31.05,33.71 24,29.04 16.95,33.71 21.04,25.55 12.59,20.29 21.04,19.92" fill="#b8963e"/>' +
+        "</svg>" +
+        '<span class="brand-text"><strong data-i18n="brand.ministry">' + t("brand.ministry") + "</strong>" +
+        '<small data-i18n="brand.bureau">' + t("brand.bureau") + "</small></span>" +
+        "</a>" +
+        '<div class="header-actions">' +
+        '<button id="btn-lang" class="toggle-btn" type="button" data-i18n-aria="toggle.lang" aria-label="' + t("toggle.lang") + '">' + t("lang.btn") + "</button>" +
+        '<button id="btn-nums" class="toggle-btn" type="button" data-i18n-aria="toggle.nums" aria-label="' + t("toggle.nums") + '">' + (SP.state.nums === "ar" ? t("nums.btn.en") : t("nums.btn.ar")) + "</button>" +
+        '<button id="btn-menu" class="menu-btn" type="button" aria-expanded="false" data-i18n-aria="nav.menu" aria-label="' + t("nav.menu") + '">' +
+        '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>' +
+        "</button></div></div>" +
+        '<nav id="site-nav" class="site-nav" aria-label="main"><div class="container">' + nav +
+        '<a href="register.html" class="nav-cta" data-i18n="nav.register">' + t("nav.register") + "</a>" +
+        "</div></nav></header>";
+      return header;
+    },
+
+    chromeFooter: function () {
+      var t = SP.t;
+      var footer =
+        '<footer class="site-footer"><div class="container footer-grid">' +
+        "<div>" +
+        '<div class="footer-brand">' +
+        '<svg width="38" height="38" viewBox="0 0 48 48" aria-hidden="true">' +
+        '<circle cx="24" cy="24" r="22" fill="#0a241c" stroke="#b8963e" stroke-width="2.5"/>' +
+        '<polygon points="24,12 26.96,19.92 35.41,20.29 26.96,25.55 31.05,33.71 24,29.04 16.95,33.71 21.04,25.55 12.59,20.29 21.04,19.92" fill="#b8963e"/>' +
+        "</svg>" +
+        "<div><strong data-i18n=\"brand.ministry\">" + t("brand.ministry") + "</strong><br>" +
+        '<small data-i18n="brand.bureau">' + t("brand.bureau") + "</small></div></div>" +
+        '<p class="mb-0" style="font-size:var(--fs-sm)" data-i18n="footer.tagline">' + t("footer.tagline") + "</p>" +
+        "</div>" +
+        "<div><h4 data-i18n=\"footer.quick\">" + t("footer.quick") + "</h4>" +
+        '<ul class="footer-links">' +
+        '<li><a href="auctions.html" data-i18n="nav.auctions">' + t("nav.auctions") + "</a></li>" +
+        '<li><a href="governorate.html" data-i18n="nav.governorates">' + t("nav.governorates") + "</a></li>" +
+        '<li><a href="marketplace.html" data-i18n="nav.marketplace">' + t("nav.marketplace") + "</a></li>" +
+        '<li><a href="tools.html" data-i18n="nav.tools">' + t("nav.tools") + "</a></li>" +
+        '<li><a href="results.html" data-i18n="nav.results">' + t("nav.results") + "</a></li>" +
+        '<li><a href="packages.html" data-i18n="pkg.title">' + t("pkg.title") + "</a></li>" +
+        '<li><a href="gift.html" data-i18n="gift.title">' + t("gift.title") + "</a></li>" +
+        "</ul></div>" +
+        "<div><h4 data-i18n=\"footer.contacts\">" + t("footer.contacts") + "</h4>" +
+        '<ul class="footer-contact">' +
+        '<li><span class="lbl" data-i18n="footer.email">' + t("footer.email") + '</span><a href="mailto:vip.plates@mot.gov.sy" dir="ltr">vip.plates@mot.gov.sy</a></li>' +
+        '<li><span class="lbl" data-i18n="footer.phone">' + t("footer.phone") + '</span><span dir="ltr">+963 11 000 0000</span></li>' +
+        '<li><span class="lbl" data-i18n="footer.address">' + t("footer.address") + '</span><span data-i18n="footer.address.val">' + t("footer.address.val") + "</span></li>" +
+        "</ul></div>" +
+        '<div><h4 data-i18n="footer.hours">' + t("footer.hours") + "</h4>" +
+        '<ul class="footer-contact"><li data-i18n="footer.hours.val">' + t("footer.hours.val") + "</li></ul></div>" +
+        "</div>" +
+        '<div class="container footer-bar">' +
+        '<span data-i18n="footer.rights">' + t("footer.rights") + "</span>" +
+        '<span class="footer-note" data-i18n="footer.prototype">' + t("footer.prototype") + "</span>" +
+        "</div></footer>";
+      return footer;
+    },
+
     /* ---------- boot ---------- */
     init: function () {
+      var hdr = document.getElementById("hdr");
+      if (hdr) hdr.outerHTML = SP.chromeHeader(document.body.getAttribute("data-page") || "");
+      var ftr = document.getElementById("ftr");
+      if (ftr) ftr.outerHTML = SP.chromeFooter();
       SP.applyI18n();
 
       var bl = document.getElementById("btn-lang");
@@ -205,5 +300,9 @@
   };
 
   window.SP = SP;
-  SP.init();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () { SP.init(); });
+  } else {
+    SP.init();
+  }
 })();

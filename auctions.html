@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المزادات — وزارة النقل</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body data-page="auctions">
+<div id="hdr"></div>
+
+<main class="container page">
+  <div class="page-head">
+    <span class="eyebrow" data-i18n="nav.auctions">المزادات</span>
+    <h1 data-i18n="auctions.title">المزادات</h1>
+    <p class="lead" data-i18n="auctions.sub">جميع المزادات المفتوحة حالياً — الأسعار بالليرة السورية</p>
+  </div>
+
+  <div class="filter-bar">
+    <div class="field">
+      <label for="f-search" data-i18n="common.search.ph">ابحث برقم اللوحة…</label>
+      <input class="input" id="f-search" type="search" data-i18n-ph="common.search.ph" placeholder="ابحث برقم اللوحة…">
+    </div>
+    <div class="field">
+      <label for="f-gov" data-i18n="auctions.filter.gov">المحافظة</label>
+      <select class="input" id="f-gov"><option value="">—</option></select>
+    </div>
+    <div class="field">
+      <label for="f-pattern" data-i18n="auctions.filter.pattern">نمط الرقم</label>
+      <select class="input" id="f-pattern">
+        <option value="all" data-i18n="pat.all">جميع الأنماط</option>
+        <option value="same5" data-i18n="pat.same5">خمس أرقام متطابقة</option>
+        <option value="repeat" data-i18n="pat.repeat">تكرار (مثنى)</option>
+        <option value="palindrome" data-i18n="pat.palindrome">متناظر (خزاعي)</option>
+        <option value="sequence" data-i18n="pat.sequence">تتالي</option>
+        <option value="triple" data-i18n="pat.triple">ثلاثي</option>
+        <option value="lucky7" data-i18n="pat.lucky7">سبعة محظوظ</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="f-sort" data-i18n="auctions.filter.sort">ترتيب</label>
+      <select class="input" id="f-sort">
+        <option value="ending" data-i18n="sort.ending">الأقرب انتهاءً</option>
+        <option value="highest" data-i18n="sort.highest">الأعلى سعراً</option>
+        <option value="lowest" data-i18n="sort.lowest">الأقل سعراً</option>
+      </select>
+    </div>
+  </div>
+
+  <p class="filter-count" id="f-count" aria-live="polite"></p>
+  <div class="grid grid-4" id="auctions-grid" aria-live="polite"></div>
+  <div class="empty" id="f-empty" style="display:none" data-i18n="common.empty">لا توجد نتائج مطابقة.</div>
+</main>
+
+<div id="ftr"></div>
+<div id="toast-root"></div>
+
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pages/auctions.js"></script>
+</body>
+</html>

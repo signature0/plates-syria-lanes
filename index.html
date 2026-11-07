@@ -10,41 +10,9 @@
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/app.css">
 </head>
-<body>
+<body data-page="home">
 
-<header class="site-header">
-  <div class="container header-top">
-    <a class="brand" href="index.html">
-      <svg class="brand-emblem" width="42" height="42" viewBox="0 0 48 48" aria-hidden="true">
-        <circle cx="24" cy="24" r="22" fill="#0f2e24" stroke="#b8963e" stroke-width="2.5"/>
-        <circle cx="24" cy="24" r="16.5" fill="none" stroke="#b8963e" stroke-width="1"/>
-        <polygon points="24,12 26.96,19.92 35.41,20.29 26.96,25.55 31.05,33.71 24,29.04 16.95,33.71 21.04,25.55 12.59,20.29 21.04,19.92" fill="#b8963e"/>
-      </svg>
-      <span class="brand-text">
-        <strong data-i18n="brand.ministry">وزارة النقل</strong>
-        <small data-i18n="brand.bureau">مديرية تسجيل وترخيص المركبات</small>
-      </span>
-    </a>
-    <div class="header-actions">
-      <button id="btn-lang" class="toggle-btn" type="button" data-i18n-aria="toggle.lang" aria-label="التبديل إلى الإنجليزية">EN</button>
-      <button id="btn-nums" class="toggle-btn" type="button" data-i18n-aria="toggle.nums" aria-label="تبديل الأرقام">١٢٣</button>
-      <button id="btn-menu" class="menu-btn" type="button" aria-expanded="false" data-i18n-aria="nav.menu" aria-label="القائمة">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      </button>
-    </div>
-  </div>
-  <nav id="site-nav" class="site-nav" aria-label="main">
-    <div class="container">
-      <a href="index.html" aria-current="page" data-i18n="nav.home">الرئيسية</a>
-      <a href="auctions.html" data-i18n="nav.auctions">المزادات</a>
-      <a href="governorate.html" data-i18n="nav.governorates">المحافظات</a>
-      <a href="marketplace.html" data-i18n="nav.marketplace">السوق</a>
-      <a href="tools.html" data-i18n="nav.tools">الأدوات</a>
-      <a href="results.html" data-i18n="nav.results">النتائج</a>
-      <a href="register.html" class="nav-cta" data-i18n="nav.register">التسجيل</a>
-    </div>
-  </nav>
-</header>
+<div id="hdr"></div>
 
 <main>
   <!-- Banner: shared ComfyUI asset (assets/img/banner-16x9.jpg) absent in this
@@ -127,53 +95,7 @@
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="container footer-grid">
-    <div>
-      <div class="footer-brand">
-        <svg width="38" height="38" viewBox="0 0 48 48" aria-hidden="true">
-          <circle cx="24" cy="24" r="22" fill="#0a241c" stroke="#b8963e" stroke-width="2.5"/>
-          <polygon points="24,12 26.96,19.92 35.41,20.29 26.96,25.55 31.05,33.71 24,29.04 16.95,33.71 21.04,25.55 12.59,20.29 21.04,19.92" fill="#b8963e"/>
-        </svg>
-        <div>
-          <strong data-i18n="brand.ministry">وزارة النقل</strong><br>
-          <small data-i18n="brand.bureau">مديرية تسجيل وترخيص المركبات</small>
-        </div>
-      </div>
-      <p class="mb-0" style="font-size:var(--fs-sm)" data-i18n="footer.tagline">منصة رسمية إلكترونية لمزادات لوحات الأرقام المميزة.</p>
-    </div>
-    <div>
-      <h4 data-i18n="footer.quick">روابط سريعة</h4>
-      <ul class="footer-links">
-        <li><a href="auctions.html" data-i18n="nav.auctions">المزادات</a></li>
-        <li><a href="governorate.html" data-i18n="nav.governorates">المحافظات</a></li>
-        <li><a href="marketplace.html" data-i18n="nav.marketplace">السوق</a></li>
-        <li><a href="tools.html" data-i18n="nav.tools">الأدوات</a></li>
-        <li><a href="results.html" data-i18n="nav.results">النتائج</a></li>
-        <li><a href="packages.html" data-i18n="pkg.title">الباقات العائلية</a></li>
-        <li><a href="gift.html" data-i18n="gift.title">شهادة إهداء</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 data-i18n="footer.contacts">اتصل بنا</h4>
-      <ul class="footer-contact">
-        <li><span class="lbl" data-i18n="footer.email">البريد الإلكتروني</span><a href="mailto:vip.plates@mot.gov.sy" dir="ltr">vip.plates@mot.gov.sy</a></li>
-        <li><span class="lbl" data-i18n="footer.phone">الهاتف</span><span dir="ltr">+963 11 000 0000</span></li>
-        <li><span class="lbl" data-i18n="footer.address">العنوان</span><span data-i18n="footer.address.val">دمشق — مبنى وزارة النقل</span></li>
-      </ul>
-    </div>
-    <div>
-      <h4 data-i18n="footer.hours">ساعات العمل</h4>
-      <ul class="footer-contact">
-        <li data-i18n="footer.hours.val">الأحد — الخميس، 9:00 حتى 16:00</li>
-      </ul>
-    </div>
-  </div>
-  <div class="container footer-bar">
-    <span data-i18n="footer.rights">© 2026 وزارة النقل</span>
-    <span class="footer-note" data-i18n="footer.prototype">نموذج تجريبي</span>
-  </div>
-</footer>
+<div id="ftr"></div>
 
 <div id="toast-root"></div>
 
