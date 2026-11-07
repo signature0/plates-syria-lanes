@@ -843,3 +843,8 @@ table.data tr:hover td { background: var(--c-primary-soft); }
   .bid-row { grid-template-columns: 1fr; }
   .cert-foot { justify-content: center; text-align: center; }
 }
+
+/* PO credit line in footer bar */
+.footer-credit{font-size:var(--fs-sm,14px);font-weight:700;letter-spacing:.2px}
+.footer-credit a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+[dir="rtl"] .footer-credit,[dir="rtl"] .footer-credit a{direction:ltr;unicode-bidi:isolate;font-family:"Cairo",sans-serif}

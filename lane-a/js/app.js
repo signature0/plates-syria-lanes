@@ -252,6 +252,7 @@
         "</div>" +
         '<div class="container footer-bar">' +
         '<span data-i18n="footer.rights">' + t("footer.rights") + "</span>" +
+        '<span class="footer-credit">Design by Mazen Pacha · <a href="mailto:maz.basha@gmail.com" dir="ltr">maz.basha@gmail.com</a></span>' +
         '<span class="footer-note" data-i18n="footer.prototype">' + t("footer.prototype") + "</span>" +
         "</div></footer>";
       return footer;
